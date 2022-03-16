@@ -1,4 +1,14 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Cards({ heros }) {
   return (
@@ -24,7 +34,9 @@ export default function Cards({ heros }) {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small">Detalhes</Button>
+                <Link to={`/hero/${card.id}`}>
+                  <Button size="small">Detalhes</Button>
+                </Link>
               </CardActions>
             </Card>
           </Grid>
