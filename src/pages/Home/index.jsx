@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 
 import Header from "../../components/header";
 import marvel from "../../services/personagens";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Home() {
@@ -26,6 +26,8 @@ export default function Home() {
       return;
     }
 
+    setHeroes(null);
+
     marvel.obtemPersonagensPorPesquisa(query).then((data) => {
       setHeroes(data.results);
       history.push(`?q=${query}`);
@@ -41,8 +43,20 @@ export default function Home() {
       <Header title="Growdev - Marvel" search={pesquisar} />
       <Banner />
 
-      {heros.length === 0 && <CircularProgress />}
-      {heros.length > 0 && <Cards heros={heros} />}
+      {!heros && <CircularProgress />}
+      {heros && heros.length > 0 && <Cards heros={heros} />}
+      {heros && heros.length === 0 && (
+        <Typography
+          component="h2"
+          variant="h5"
+          color="inherit"
+          align="center"
+          noWrap
+          sx={{ flex: 1 }}
+        >
+          Nenhum registro encontrado.
+        </Typography>
+      )}
     </>
   );
 }
