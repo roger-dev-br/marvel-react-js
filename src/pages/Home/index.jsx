@@ -26,6 +26,7 @@ export default function Home() {
       // atualiza o estado para desenhar na tela os cards
       setHeroes([...heros, ...data.results]);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offset]);
 
   useEffect(() => {
