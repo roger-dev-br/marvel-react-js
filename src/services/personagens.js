@@ -1,8 +1,11 @@
 import { api, marvelKey } from './api';
 
 class Personagens {
-    async obtemPersonagens() {
-        const resposta = await api.get(`/characters?${marvelKey}`);
+    async obtemPersonagens(offset) {
+        if (!offset) {
+            offset = 0;
+        }
+        const resposta = await api.get(`/characters?${marvelKey}&limit=20&offset=${offset}`);
         return resposta.data.data;
     }
 

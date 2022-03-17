@@ -13,6 +13,7 @@ export default function Banner() {
         backgroundColor: 'grey.800',
         color: '#fff',
         mb: 4,
+        height: [400],
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
