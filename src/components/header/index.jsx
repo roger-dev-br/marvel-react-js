@@ -3,10 +3,19 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
-import { AppBar } from "@mui/material";
+import { AppBar, InputBase } from "@mui/material";
 
 function Header(props) {
-  const {  title } = props;
+  const { title, search } = props;
+
+  const [nome, setNome] = React.useState("");
+
+  function pesquisar() {
+    if (nome) {
+      search(nome);
+      setNome("");
+    }
+  }
 
   return (
     <React.Fragment>
@@ -36,10 +45,20 @@ function Header(props) {
           >
             {title}
           </Typography>
-          <IconButton>
+          <InputBase
+            placeholder="Busca de personagem"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                pesquisar();
+              }
+            }}
+          />
+          <IconButton onClick={() => pesquisar()}>
             <SearchIcon />
           </IconButton>
-        </Toolbar>        
+        </Toolbar>
       </AppBar>
     </React.Fragment>
   );
